@@ -1,5 +1,13 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
+/*if($_GET) {
+    var_dump($_GET);
+    if($_GET['refer']) {
+        echo $_GET['refer'];
+        header("Location:".$_GET['refer']);
+    }
+//    echo $_GET['refer'];
+}*/
 if($_POST) {
     $api_url = "http://121.41.82.206/baigoSSO/api/api.php";
 //    var_dump($_POST);
@@ -22,6 +30,14 @@ if($_POST) {
 
     if($login_result['str_alert'] == 'y010401') {
         echo 'Login Seccess!';
+    }else {
+        echo "Login Fail!";
+
+        echo "<script>";
+        echo  "window.location.href=window.location.href;";
+        echo "</script>";
+
+        exit;
     }
     // 对密文进行解码
     $decode_postdate = array();
@@ -66,23 +82,25 @@ if($_POST) {
 //    var_dump($decode_result_array);
 //    var_dump($decode_postdate);
 //    echo "\r\t 第二个";
-
+//    var_dump($_POST);
+    if($login_result['str_alert'] == 'y010401') {
+//        $referrer = $_POST['user_referer'];
+//        $str = "Location:".$_POST['user_referer'];
+//        header($str);
+        if($_GET) {
+            if($_GET['refer']) {
+                header("Location:".$_GET['refer']);
+            }
+        }
+        exit;
+    }
 //    已登录用户的状态信息
-    var_dump($decode_result_array_base64_decode);
-
-//    var_dump($decode_result_array);
-//    echo "\r\t 第二个";
-//    var_dump($get_api_url);
-//    var_dump($decode_result_array);
-//    var_dump($get_api_url);
-//    echo "\r\t";
-//    var_dump($file_contents);
+//    var_dump($decode_result_array_base64_decode);
+//    $str1 = "Location:".$str;
+//    header("Location: $_SERVER['HTTP_REFERER']");
+//    header($str1);
 
 
-
-
-
-//    var_dump($decode_postdate);
 }
 
 ?>
@@ -110,16 +128,17 @@ if($_POST) {
 </head>
 <body>
 <div class="container">
-        <form class="form-signin" method="post" action="">
+        <form class="form-signin" name="login-form" id="login-form" role="form" data-togle="validator" method="post" action="./login.php?refer=./test.html">
             <h2 class="form-signin-heading">Please sign in</h2>
             <label for="user_name" class="sr-only">Username</label>
-            <input  id="user_name" name="user_name" class="form-control" placeholder="Username" >
+            <input  id="user_name" name="user_name" class="form-control" placeholder="Username" required data-error="请填写用户名">
             <label for="inputPassword" class="sr-only">Password</label>
-            <input  id="inputPassword" name="inputPassword" class="form-control" placeholder="Password">
+            <input  id="inputPassword" name="inputPassword" type="password" class="form-control" required placeholder="Password" data-error="请填写密码">
 <!--            <input type="hidden" id="act_post" name="act_post" value="login">-->
 <!--            <input type="hidden" id="app_id" name="app_id" value="1">-->
 <!--            <input type="hidden" id="app_key" name="app_key" value="Ei1F4LeTIUmJeFdO1MfbdkGQpZMeQ0CUX3aQD4kMOMVsRz7IAbjeBpurD6LTvNoI">-->
             <input type="hidden" id="user_pass" name="user_pass">
+            <input type="hidden" id="user_referer" name="user_referer">
             <div class="checkbox">
                 <label>
                     <input type="checkbox" value="remember-me"> Remember me
@@ -135,16 +154,42 @@ if($_POST) {
         $("form").submit(function(){
             var v= $.md5($("#inputPassword").val());
             $("#user_pass").val(v);
+            $('#user_referer').val(document.referrer);
             $("#inputPassword").attr("disabled","true");
             return true;
         });
     });
 </script>
+<script type="text/javascript">
+//    js实现的仿PHP获取GET参数
+    var $_GET = (function(){
+        var url = window.document.location.href.toString();
+        var u = url.split("?");
+        if(typeof(u[1]) == "string"){
+            u = u[1].split("&");
+            var get = {};
+            for(var i in u){
+                var j = u[i].split("=");
+                get[j[0]] = j[1];
+            }
+            return get;
+        } else {
+            return {};
+        }
+    })();
+    if($_GET['refer'] == "") ;
+    else {
+//        document.login-form..action = "";
+//        document.login-form.action = "";
+        document.getElementById("login-form").action = "./login.php?refer="+$_GET['refer'];
 
+    }
+</script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="js/jquery.md5.js"></script>
+<script src="js/validator.min.js"></script>
 </body>
 </html>

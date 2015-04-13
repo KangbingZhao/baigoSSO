@@ -122,7 +122,31 @@ if($_POST) {
     });
 </script>
 
+<script type="text/javascript">
+    //    js实现的仿PHP获取GET参数
+    var $_GET = (function(){
+        var url = window.document.location.href.toString();
+        var u = url.split("?");
+        if(typeof(u[1]) == "string"){
+            u = u[1].split("&");
+            var get = {};
+            for(var i in u){
+                var j = u[i].split("=");
+                get[j[0]] = j[1];
+            }
+            return get;
+        } else {
+            return {};
+        }
+    })();
+    if($_GET['refer'] == "") ;
+    else {
+//        document.login-form..action = "";
+//        document.login-form.action = "";
+        document.getElementById("user_signon").action = "./register.php?refer="+$_GET['refer'];
 
+    }
+</script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="js/validator.min.js"></script>
