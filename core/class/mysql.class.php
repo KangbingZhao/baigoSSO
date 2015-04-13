@@ -8,7 +8,7 @@
 if(!defined("IN_BAIGO")) {
 	exit("Access Denied");
 }
-
+error_reporting(E_ALL ^ E_DEPRECATED);
 /*-------------数据库类-------------*/
 class CLASS_MYSQL {
 
