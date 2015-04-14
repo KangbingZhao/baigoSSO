@@ -83,13 +83,51 @@ if($_POST) {
 //    var_dump($decode_postdate);
 //    echo "\r\t 第二个";
 //    var_dump($_POST);
+    var_dump($decode_result_array_base64_decode);
     if($login_result['str_alert'] == 'y010401') {
-//        $referrer = $_POST['user_referer'];
-//        $str = "Location:".$_POST['user_referer'];
-//        header($str);
+
         if($_GET) {
+            require_once('db_connect.php');
+            $cur_timestamp=date('Y-m-d H:i:s');
+            $u_id = $decode_result_array_base64_decode['user_id'];
+            $token = md5($u_id+$cur_timestamp+rand(0,1000000)+"");
+//            $query_result = mysql_fetch_array(mysql_query("SELECT * FROM sso_token WHERE u_id='$u_id'"));
+            $query = "SELECT * FROM sso_token WHERE u_id='$u_id'";
+            $nums = mysql_num_rows(mysql_query($query));
+
+/*            if($nums) {
+                if($nums == 1) {//已经有了一个token,看是否过期
+                    $query_result = mysql_fetch_array(mysql_query($query));
+
+                    if(strtotime(date('Y-m-d H:i:s'))-strtotime($query_result['timestamp']) < 3600*24*2) {
+                        //已经登录了且有效
+                        mysql_query("DELETE FROM sso_token WHERE u_id='$u_id'");
+                        mysql_query("INSERT INTO sso_token(u_id,timestamp,token)VALUES ('$u_id','$cur_timestamp','$token')");
+                    }
+                    else {//已经登录过但是失效
+                        mysql_query("DELETE FROM sso_token WHERE u_id='$u_id'");
+                        mysql_query("INSERT INTO sso_token(u_id,timestamp,token)VALUES ('$u_id','$cur_timestamp','$token')");
+
+                    }
+                }else {//有多个token，出错,删除所有token
+//                    var_dump($query_result);
+                    mysql_query("DELETE * FROM sso_token WHERE u_id'='$u_id'");
+                    mysql_query("INSERT INTO sso_token(u_id,timestamp,token)VALUES ('$u_id','$cur_timestamp','$token')");
+                }
+            }*/
+            if($nums) {//已经有了此用户的token,删除原来的token
+                mysql_query("DELETE FROM sso_token WHERE u_id='$u_id'");
+            }
+            mysql_query("INSERT INTO sso_token(u_id,timestamp,token)VALUES ('$u_id','$cur_timestamp','$token')");
+
+            setcookie("token","",time()-3600);
+            setcookie("token",$token,time()+3600*2,"/");
+            setcookie("test","testcookie");
+            mysql_close();
+
             if($_GET['refer']) {
-                header("Location:".$_GET['refer']);
+//                header("Location:".$_GET['refer']);
+
             }
         }
         exit;
