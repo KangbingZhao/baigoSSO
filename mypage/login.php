@@ -83,7 +83,7 @@ if($_POST) {
 //    var_dump($decode_postdate);
 //    echo "\r\t 第二个";
 //    var_dump($_POST);
-    var_dump($decode_result_array_base64_decode);
+    //var_dump($decode_result_array_base64_decode);
     if($login_result['str_alert'] == 'y010401') {
 
         if($_GET) {
