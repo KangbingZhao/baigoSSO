@@ -31,11 +31,13 @@ if($_POST) {
             if(mysql_affected_rows()<1) {//删除出错，但是不需要做处理
 //                die("删除token时出错！");
             }
-            $return_data = json_encode(array("is_logout"=>"true")); print_r($return_data);
+            $return_data = json_encode(array("is_logout"=>"true"));
             echo $return_data;
+            die();
         }else {//token出错或者用户已经处于未登录状态
             $return_data = json_encode(array("is_logout"=>"true"));
             echo $return_data;
+            die();
         }
     }else {
         $return_data = json_encode(array("is_logout"=>"false"));

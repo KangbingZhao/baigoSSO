@@ -90,6 +90,7 @@ if($_POST) {
             require_once('db_connect.php');
             $cur_timestamp=date('Y-m-d H:i:s');
             $u_id = $decode_result_array_base64_decode['user_id'];
+            $u_name = $decode_result_array_base64_decode['user_name'];
             $token = md5($u_id+$cur_timestamp+rand(0,1000000)+"");
 //            $query_result = mysql_fetch_array(mysql_query("SELECT * FROM sso_token WHERE u_id='$u_id'"));
             $query = "SELECT * FROM sso_token WHERE u_id='$u_id'";
@@ -118,11 +119,12 @@ if($_POST) {
             if($nums) {//已经有了此用户的token,删除原来的token
                 mysql_query("DELETE FROM sso_token WHERE u_id='$u_id'");
             }
-            mysql_query("INSERT INTO sso_token(u_id,timestamp,token)VALUES ('$u_id','$cur_timestamp','$token')");
+            mysql_query("INSERT INTO sso_token(u_id,u_name,timestamp,token)VALUES ('$u_id','$u_name','$cur_timestamp','$token')");
 
             setcookie("token","",time()-3600);
             setcookie("token",$token,time()+3600*2,"/");
-            setcookie("test","testcookie");
+            setcookie("u_id",$u_id,time()+3600*2,"/");
+            setcookie("u_name",$u_name,time()+3600*2,"/");
             mysql_close();
 
             if($_GET['refer']) {
@@ -132,7 +134,7 @@ echo "< script language='javascript'
 type='text/javascript'>";
 echo "window.location.href='$url'";
 echo "< /script>";
-
+exit;
 
 }
         }
