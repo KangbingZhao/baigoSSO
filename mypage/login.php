@@ -9,7 +9,7 @@ header("Content-type: text/html; charset=utf-8");
 //    echo $_GET['refer'];
 }*/
 if($_POST) {
-    $api_url = "http://121.41.82.206/baigoSSO/api/api.php";
+    require_once('sso_data.php');
 //    var_dump($_POST);
     $ch = curl_init();
     curl_setopt($ch,CURLOPT_URL,$api_url);

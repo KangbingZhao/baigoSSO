@@ -5,7 +5,7 @@
  * Date: 2015/4/13
  * Time: 17:10
  */
-$api_url = "http://localhost/baigoSSO/api/api.php";
+$api_url = "http://localhost:81/html/baigoSSO/api/api.php";
 $app_id = '1';
 $app_key = "Ei1F4LeTIUmJeFdO1MfbdkGQpZMeQ0CUX3aQD4kMOMVsRz7IAbjeBpurD6LTvNoI";
 
