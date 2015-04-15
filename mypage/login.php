@@ -126,9 +126,15 @@ if($_POST) {
             mysql_close();
 
             if($_GET['refer']) {
-//                header("Location:".$_GET['refer']);
+                header("Location:".$_GET['refer']);
+$url = $_GET['refer'];
+echo "< script language='javascript'
+type='text/javascript'>";
+echo "window.location.href='$url'";
+echo "< /script>";
 
-            }
+
+}
         }
         exit;
     }

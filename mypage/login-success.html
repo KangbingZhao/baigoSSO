@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>登录成功</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <script type="text/javascript"> //延迟执行的函数，单位是毫秒
+        function delayRun(code,time) {
+        var t=setTimeout(code,time);
+        }
+    </script>
+    <div class="container">
+        <div class="jumbotron">
+            <center>
+                <p>登录成功！</p>
+                <p id="time"></p>
+                <p>您也可以<a href="./"><span class="label label-primary">立即返回</span></a></p>
+            </center>
+        </div>
+    </div>
+
+
+    <script type="text/JavaScript">
+        //对于登录结果的计时，改变time标签
+        var secs = 5; //倒计时的秒数
+        for(var i=secs;i>=0;i--)
+        {
+            window.setTimeout("doUpdate(" + i + ")", (secs-i) * 1000);
+        }
+        function doUpdate(num)
+        {
+            var n = document.getElementById("time");
+            if(n!=null) {
+                document.getElementById("time").innerHTML = num+"秒钟后为您跳转回主页" ;
+                if (num == 0){window.location='./'}
+            }
+        }
+    </script>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
