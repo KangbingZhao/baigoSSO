@@ -122,9 +122,9 @@ if($_POST) {
             mysql_query("INSERT INTO sso_token(u_id,u_name,timestamp,token)VALUES ('$u_id','$u_name','$cur_timestamp','$token')");
 
             setcookie("token","",time()-3600);
-            setcookie("token",$token,time()+3600*2,"/","peilong.me");
-            setcookie("u_id",$u_id,time()+3600*2,"/","peilong.me");
-            setcookie("u_name",$u_name,time()+3600*2,"/","peilong.me");
+            setcookie("token",$token,time()+3600*2,"/","learn4me.com");
+            setcookie("u_id",$u_id,time()+3600*2,"/","learn4me.com");
+            setcookie("u_name",$u_name,time()+3600*2,"/","learn4me.com");
             mysql_close();
 
             if($_GET['refer']) {
