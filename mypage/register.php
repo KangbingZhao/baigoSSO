@@ -26,7 +26,10 @@ if($_POST) {
 /*        echo "<script>";
         echo  "window.location.href='http://www.learn4me.com';";
         echo "</script>";*/
-        header("Location:http://www.learn4me.com");
+        //header("Location:http://learn4me.com");
+echo "<script>";
+echo  "window.location.href='./login.php?refer=http://learn4me.com';";
+echo "</script>";
         exit;
     } else {
         echo "Register Fail";
