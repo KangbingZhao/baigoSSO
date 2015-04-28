@@ -1,7 +1,7 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
 if($_POST) {
-    $api_url = "http://121.41.82.206/baigoSSO/api/api.php";
+    $api_url = "http://121.41.82.206:11111/html/baigoSSO/api/api.php";
     $ch = curl_init();
     curl_setopt($ch,CURLOPT_URL,$api_url);
     curl_setopt ($ch, CURLOPT_POST, 1);
@@ -22,9 +22,20 @@ if($_POST) {
     curl_close($ch);
 
     $reg_result = json_decode($file_contents,true);
-    if($reg_result['str_alert'] == "y010101")
-        echo "注册成功";
-    else echo $reg_result['str_alert'];
+    if($reg_result['str_alert'] == "y010101") {
+/*        echo "<script>";
+        echo  "window.location.href='http://www.learn4me.com';";
+        echo "</script>";*/
+        header("Location:http://www.learn4me.com");
+        exit;
+    } else {
+        echo "Register Fail";
+        echo "<script>";
+        echo  "window.location.href=window.location.href;";
+        echo "</script>";
+    }
+//    var_dump($reg_result);
+    exit;
 //    var_dump($da);
 //    var_dump($file_contents);
 //

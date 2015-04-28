@@ -8,6 +8,7 @@ header("Content-type: text/html; charset=utf-8");
     }
 //    echo $_GET['refer'];
 }*/
+
 if($_POST) {
     require_once('sso_data.php');
 //    var_dump($_POST);
