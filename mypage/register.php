@@ -74,7 +74,7 @@ if($_POST) {
                     <label class="col-md-4 control-label" for="user_mail">邮箱</label>
                     <div class="col-md-8 controls">
                         <input id="user_mail" name="user_mail" class="form-control" type="email"
-                               data-error="无效的邮箱地址" data-remote="check_mail.php" required placeholder="请输入注册邮箱">
+                               data-remote="check_mail.php" data-error="无效的邮箱地址"  required placeholder="请输入注册邮箱">
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
