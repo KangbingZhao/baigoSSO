@@ -13,7 +13,7 @@ if($_GET['user_mail']) {
     $data['app_id'] = '1';
     $data['app_key'] = 'Ei1F4LeTIUmJeFdO1MfbdkGQpZMeQ0CUX3aQD4kMOMVsRz7IAbjeBpurD6LTvNoI';
 
-    $api_url = "http://121.41.82.206/baigoSSO/api/api.php";
+    $api_url = "http://121.41.82.206:11111/html/baigoSSO/api/api.php";
     $i = 0;
     $get_api_url=$api_url;
     foreach($data as $key=>$value) {
@@ -37,8 +37,8 @@ if($_GET['user_mail']) {
         header('http/1.1 403 Forbidden');
         echo $check_mail_result_decode['str_alert'];
     }
-    var_dump($check_mail_result);
-    var_dump($check_mail_result_decode);
+/*    var_dump($check_mail_result);
+    var_dump($check_mail_result_decode);*/
 
 
 }

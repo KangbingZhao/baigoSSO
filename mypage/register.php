@@ -66,7 +66,7 @@ if($_POST) {
                     <div class="col-md-8 controls">
                         <input id="user_name" name="user_name" class="form-control" type="text"
                                placeholder="数字字母下划线，5-20个字符" maxlength="20" data-minlength="5"
-                               data-remote="check_name.php" data-error="无效的用户名" required>
+                               data-remote="check_name.php" data-error="无效的用户名" data-remote-error="用户名已被注册" required>
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ if($_POST) {
                     <label class="col-md-4 control-label" for="user_mail">邮箱</label>
                     <div class="col-md-8 controls">
                         <input id="user_mail" name="user_mail" class="form-control" type="email"
-                               data-remote="check_mail.php" data-error="无效的邮箱地址"  required placeholder="请输入注册邮箱">
+                               data-remote="check_mail.php" data-error="无效的邮箱地址"  data-remote-error="邮箱已被注册" required placeholder="请输入注册邮箱">
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>

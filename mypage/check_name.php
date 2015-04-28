@@ -12,7 +12,7 @@ if($_GET['user_name']) {
     $data['app_id'] = '1';
     $data['app_key'] = 'Ei1F4LeTIUmJeFdO1MfbdkGQpZMeQ0CUX3aQD4kMOMVsRz7IAbjeBpurD6LTvNoI';
 
-    $api_url = "http://121.41.82.206/baigoSSO/api/api.php";
+    $api_url = "http://121.41.82.206:11111/html/baigoSSO/api/api.php";
     $i = 0;
     $get_api_url=$api_url;
     foreach($data as $key=>$value) {
@@ -28,11 +28,11 @@ if($_GET['user_name']) {
     $check_name_result_decode = json_decode($check_name_result,true);
 
 //    var_dump($check_name_result);
-//    echo $check_name_result_decode["str_alert"];
+    echo $check_name_result_decode["str_alert"];
     require_once('alert_decode.php');
-    $ad = new alert_decode;
+//    $ad = new alert_decode;
 //    echo ad.decode($check_name_result_decode['str_alert']);
-    echo ad.decode('y010205');
+//    echo ad.decode('y010205');
 
     if($check_name_result_decode['str_alert'] == 'y010205') { //用户名可以注册
         header('http/1.1 200 OK');
