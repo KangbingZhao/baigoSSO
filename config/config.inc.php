@@ -82,8 +82,8 @@ define("BG_PATH_SMARTY", BG_PATH_CORE . BG_NAME_SMARTY . "/"); //Smarty 目录
 
 
 /*-------------------------URL-------------------------*/
-define("BG_URL_ROOT", "/".str_ireplace(str_ireplace("\\", "/", $_SERVER["DOCUMENT_ROOT"]), "", str_ireplace("\\", "/", BG_PATH_ROOT))); //根目录
-
+//define("BG_URL_ROOT", "/".str_ireplace(str_ireplace("\\", "/", $_SERVER["DOCUMENT_ROOT"]), "", str_ireplace("\\", "/", BG_PATH_ROOT))); //根目录
+define("BG_URL_ROOT","/");
 define("BG_URL_HELP", BG_URL_ROOT . BG_NAME_HELP . "/"); //静态模式时文章存放目录
 define("BG_URL_API", BG_URL_ROOT . BG_NAME_API . "/"); //静态文件目录
 define("BG_URL_ADMIN", BG_URL_ROOT . BG_NAME_ADMIN . "/"); //管理目录

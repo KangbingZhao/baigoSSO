@@ -8,4 +8,4 @@ define("BG_SITE_DATE", "Y-m-d");
 define("BG_SITE_DATESHORT", "m-d");
 define("BG_SITE_TIME", "H:i:s");
 define("BG_SITE_TIMESHORT", "H:i");
-define("BG_SITE_SSIN", "XGL9lD");
+define("BG_SITE_SSIN", "x9G7Q3");

@@ -201,13 +201,14 @@ class API_USER {
 		$_str_userRand    = fn_rand(6);
 		$_str_code = $this->obj_api->api_encode($_arr_userRow, $_str_userRand);
 
+        $_str_result  = fn_baigoDecode($_str_code, $_str_userRand);
 		$_arr_return = array(
 			"code"       => $_str_code,
 			"key"        => $_str_userRand,
 			"str_alert"  => $_arr_userRow["str_alert"],
 		);
 
-		$this->obj_api->halt_re($_arr_return);
+        $this->obj_api->halt_re($_arr_userRow);
 	}
 
 
